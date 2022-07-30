@@ -1,9 +1,10 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
+import Detail from "../components/Detail";
+
 const Router = () => {
   return (
     <Routes>
-      <Route></Route>
+      <Route path="/detail" element={<Detail />}></Route>
     </Routes>
   );
 };
