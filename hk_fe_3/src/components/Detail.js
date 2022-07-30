@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import { getDetailApi } from "../assets/Api_test";
 
+import {
+  DetailWrapper,
+  MovieTitle,
+  MovieTitleDiv,
+  MovieSubtitle,
+} from "../styles/Detail/DetailStyles";
+
 const Detail = () => {
   const [movieData, setMovieData] = useState([]);
 
@@ -29,9 +36,11 @@ const Detail = () => {
     summary,
   } = movieData;
   return (
-    <>
-      <div>{title_kor}</div>
-      <div>{title_eng}</div>
+    <DetailWrapper>
+      <MovieTitleDiv>
+        <MovieTitle>{title_kor}</MovieTitle>
+        <MovieSubtitle>{title_eng}</MovieSubtitle>
+      </MovieTitleDiv>
       <div>
         <img
           src={poster_url}
@@ -53,7 +62,7 @@ const Detail = () => {
           <div>{summary}</div>
         </div>
       </div>
-    </>
+    </DetailWrapper>
   );
 };
 
