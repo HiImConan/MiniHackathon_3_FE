@@ -1,11 +1,18 @@
 import React from "react";
-import { SearchInput } from "../styles/Main/SearchInput";
+import { SearchInput, SeachDiv, MainWrap } from "../styles/Main/MainStyles";
+
+import MovieList from "./MovieList";
+import PageList from "./PageList";
 
 const Main = () => {
   return (
-    <div>
-      <SearchInput placeholder="Ex)인셉션" />
-    </div>
+    <MainWrap>
+      <SeachDiv>
+        <SearchInput placeholder="Ex)인셉션" />
+      </SeachDiv>
+      <MovieList />
+      <PageList />
+    </MainWrap>
   );
 };
 
