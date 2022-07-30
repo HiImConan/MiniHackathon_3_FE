@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { getDetailApi } from "../assets/Api_test";
+import Comment from "./Comment";
 
 import {
   DetailWrapper,
@@ -21,11 +23,12 @@ import {
 
 const Detail = () => {
   const [movieData, setMovieData] = useState([]);
+  const { movieID } = useParams();
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await getDetailApi();
+        const response = await getDetailApi(movieID);
         console.log(response);
         setMovieData(response);
       } catch (e) {
@@ -33,7 +36,7 @@ const Detail = () => {
       }
     };
     getData();
-  }, []);
+  }, [movieID]);
   const {
     title_kor,
     title_eng,
@@ -99,16 +102,18 @@ const Detail = () => {
         <StaffInfoWrapper>
           <InfoTitle>인물정보</InfoTitle>
           <StaffInfoContainer>
-            {/* {staff.map(({ name, role, image_url }) => (
-              <StaffInfoDiv key={name}>
-                <StaffImg src={image_url} alt={"staffImg"} />
-                <InfoTitle>{role}</InfoTitle>
-                <InfoContent>{name}</InfoContent>
-              </StaffInfoDiv>
-            ))} */}
+            {staff &&
+              staff.map(({ name, role, image_url }) => (
+                <StaffInfoDiv key={name}>
+                  <StaffImg src={image_url} alt={"staffImg"} />
+                  <InfoTitle>{role}</InfoTitle>
+                  <InfoContent>{name}</InfoContent>
+                </StaffInfoDiv>
+              ))}
           </StaffInfoContainer>
         </StaffInfoWrapper>
       </MovieInfoWrapper>
+      <Comment movieID={movieID} />
     </DetailWrapper>
   );
 };

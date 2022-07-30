@@ -4,7 +4,7 @@ import Detail from "../components/Detail";
 const Router = () => {
   return (
     <Routes>
-      <Route path="/detail" element={<Detail />}></Route>
+      <Route path="/detail/:movieID" element={<Detail />}></Route>
     </Routes>
   );
 };

@@ -1,21 +1,32 @@
 import { createGlobalStyle, css } from "styled-components";
 import reset from "styled-reset";
-import customReset from "./customReset.scss";
 
 const GlobalStyle = createGlobalStyle`
     ${reset};
-    ${customReset};
 
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+    *{
+        box-sizing: border-box;
+    }
+    input, textarea { 
+      -moz-user-select: auto;
+      -webkit-user-select: auto;
+      -ms-user-select: auto;
+      user-select: auto;
+    }
+    input:focus {
+      outline: none;
+    }
 
-    ${({ theme }) => {
-      return css`
-        body {
-          font-family: ${theme.fonts.family.base};
-          font-weight: ${theme.fonts.weight.normal};
-          font-size: ${theme.fonts.size.base};
-        }
-      `;
-    }}
+    button {
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+    }
 `;
 
 export default GlobalStyle;
