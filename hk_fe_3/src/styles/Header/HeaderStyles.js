@@ -14,7 +14,7 @@ export const HeaderTitle = styled.div`
    {
     //background-color: blue;
     margin: 0 10px;
-    font-size: 20px;
+    font-size: 21px;
   }
 `;
 
