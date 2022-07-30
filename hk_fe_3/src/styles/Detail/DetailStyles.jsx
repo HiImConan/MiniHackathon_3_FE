@@ -81,8 +81,3 @@ export const StaffInfoDiv = styled.div`
 export const StaffImg = styled.img`
   width: 100px;
 `;
-
-export const InfoDiv = styled.div`
-  font-size: 0.5rem;
-  color: #a9a9a9;
-`;

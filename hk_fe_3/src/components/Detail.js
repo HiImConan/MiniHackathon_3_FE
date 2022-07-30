@@ -17,7 +17,6 @@ import {
   StaffImg,
   InfoTitle,
   InfoContent,
-  InfoDiv,
 } from "../styles/Detail/DetailStyles";
 
 const Detail = () => {
@@ -27,8 +26,8 @@ const Detail = () => {
     const getData = async () => {
       try {
         const response = await getDetailApi();
-        console.log(response.data);
-        setMovieData(response.data);
+        console.log(response);
+        setMovieData(response);
       } catch (e) {
         console.log(e);
       }
@@ -100,13 +99,13 @@ const Detail = () => {
         <StaffInfoWrapper>
           <InfoTitle>인물정보</InfoTitle>
           <StaffInfoContainer>
-            {staff.map(({ name, role, image_url }) => (
+            {/* {staff.map(({ name, role, image_url }) => (
               <StaffInfoDiv key={name}>
                 <StaffImg src={image_url} alt={"staffImg"} />
                 <InfoTitle>{role}</InfoTitle>
                 <InfoContent>{name}</InfoContent>
               </StaffInfoDiv>
-            ))}
+            ))} */}
           </StaffInfoContainer>
         </StaffInfoWrapper>
       </MovieInfoWrapper>
