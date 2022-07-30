@@ -3,9 +3,21 @@ import { getDetailApi } from "../assets/Api_test";
 
 import {
   DetailWrapper,
-  MovieTitle,
   MovieTitleDiv,
+  MovieTitle,
   MovieSubtitle,
+  MovieInfoWrapper,
+  MovieInfoDetail,
+  PosterImg,
+  TextDiv,
+  TextContainer,
+  StaffInfoWrapper,
+  StaffInfoContainer,
+  StaffInfoDiv,
+  StaffImg,
+  InfoTitle,
+  InfoContent,
+  InfoDiv,
 } from "../styles/Detail/DetailStyles";
 
 const Detail = () => {
@@ -34,34 +46,70 @@ const Detail = () => {
     showtimes,
     release_date,
     summary,
+    staff,
   } = movieData;
+
   return (
     <DetailWrapper>
       <MovieTitleDiv>
         <MovieTitle>{title_kor}</MovieTitle>
         <MovieSubtitle>{title_eng}</MovieSubtitle>
       </MovieTitleDiv>
-      <div>
-        <img
-          src={poster_url}
-          style={{ width: "300px" }}
-          alt={"moviePosterImg"}
-        />
-        <div>
-          <div>{rating_aud}</div>
-          <div>{rating_cri}</div>
-          <div>{rating_net}</div>
-        </div>
-        <div>
-          <div>{genre}</div>
-          <div>{showtimes}</div>
-          <div>{release_date}</div>
-        </div>
-        <div>
-          <div>줄거리</div>
-          <div>{summary}</div>
-        </div>
-      </div>
+      <MovieInfoWrapper>
+        <MovieInfoDetail>
+          <PosterImg
+            src={poster_url}
+            style={{ width: "300px" }}
+            alt={"moviePosterImg"}
+          />
+          <TextContainer>
+            <TextDiv>
+              <div>
+                <InfoTitle>관람객 평점</InfoTitle>
+                <InfoContent>{rating_aud}</InfoContent>
+              </div>
+              <div>
+                <InfoTitle>평론가 평점</InfoTitle>
+                <InfoContent>{rating_cri}</InfoContent>
+              </div>
+              <div>
+                <InfoTitle>네티즌 평점</InfoTitle>
+                <InfoContent>{rating_net}</InfoContent>
+              </div>
+            </TextDiv>
+            <TextDiv>
+              <div>
+                <InfoTitle>장르</InfoTitle>
+                <InfoContent>{genre}</InfoContent>
+              </div>
+              <div>
+                <InfoTitle>상영 시간</InfoTitle>
+                <InfoContent>{showtimes}</InfoContent>
+              </div>
+              <div>
+                <InfoTitle>개봉일</InfoTitle>
+                <InfoContent>{release_date}</InfoContent>
+              </div>
+            </TextDiv>
+            <TextDiv>
+              <InfoTitle>줄거리</InfoTitle>
+              <InfoContent>{summary}</InfoContent>
+            </TextDiv>
+          </TextContainer>
+        </MovieInfoDetail>
+        <StaffInfoWrapper>
+          <InfoTitle>인물정보</InfoTitle>
+          <StaffInfoContainer>
+            {staff.map(({ name, role, image_url }) => (
+              <StaffInfoDiv key={name}>
+                <StaffImg src={image_url} alt={"staffImg"} />
+                <InfoTitle>{role}</InfoTitle>
+                <InfoContent>{name}</InfoContent>
+              </StaffInfoDiv>
+            ))}
+          </StaffInfoContainer>
+        </StaffInfoWrapper>
+      </MovieInfoWrapper>
     </DetailWrapper>
   );
 };
