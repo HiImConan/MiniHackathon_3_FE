@@ -2,15 +2,22 @@ import React from "react";
 
 import {
   MovieDiv,
-  MovieImgDiv,
+  MovieImg,
+  MovieTitle,
   MovieTitleDiv,
-} from "../styles/Main/MovieSection";
+} from "../styles/Main/MainStyles";
 
-const Movie = () => {
+const Movie = ({ poster, title }) => {
   return (
     <MovieDiv>
-      <MovieImgDiv />
-      <MovieTitleDiv />
+      <MovieImg
+        style={{ backgroundImage: `url(${poster})` }}
+        src={poster}
+        alt="이미지준비중"
+      ></MovieImg>
+      <MovieTitleDiv>
+        <MovieTitle>{title}</MovieTitle>
+      </MovieTitleDiv>
     </MovieDiv>
   );
 };

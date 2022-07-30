@@ -1,24 +1,18 @@
 import React from "react";
-import { SearchInput } from "../styles/Main/Search";
-import { SeachDiv } from "./../styles/Main/Search";
-import {
-  MovieDiv,
-  MovieImgDiv,
-  MovieSection,
-  MovieTitleDiv,
-} from "../styles/Main/MovieSection";
-import MovieList from "./MovieList";
+import { SearchInput, SeachDiv, MainWrap } from "../styles/Main/MainStyles";
 
-const API_URL = "https://d0cc7814-98ab-422a-b0ef-82d4165b2542.mock.pstmn.io/";
+import MovieList from "./MovieList";
+import PageList from "./PageList";
 
 const Main = () => {
   return (
-    <div>
+    <MainWrap>
       <SeachDiv>
         <SearchInput placeholder="Ex)인셉션" />
       </SeachDiv>
-      <MovieList apiUrl={API_URL} />
-    </div>
+      <MovieList />
+      <PageList />
+    </MainWrap>
   );
 };
 
