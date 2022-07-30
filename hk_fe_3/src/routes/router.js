@@ -1,7 +1,11 @@
 import React from "react";
-
-const router = () => {
-  return <div></div>;
+import { Routes, Route } from "react-router-dom";
+const Router = () => {
+  return (
+    <Routes>
+      <Route></Route>
+    </Routes>
+  );
 };
 
-export default router;
+export default Router;
