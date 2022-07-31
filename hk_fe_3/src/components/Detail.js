@@ -25,6 +25,10 @@ const Detail = () => {
   const [movieData, setMovieData] = useState([]);
   const { movieID } = useParams();
 
+  // useEffect(() => {
+  //   setMovieData(selected);
+  // }, [selected]);
+
   useEffect(() => {
     const getData = async () => {
       try {

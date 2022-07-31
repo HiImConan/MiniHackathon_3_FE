@@ -19,7 +19,7 @@ const MovieList = () => {
       }
     };
     getData();
-  }, []);
+  }, [movieData]);
 
   return (
     <MovieListDiv>
