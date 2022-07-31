@@ -27,9 +27,11 @@ const Header = () => {
         </Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link onClick={ToggleSign}>
-            {isSign ? "Sign Out" : <Link to="login">Sign In</Link>}
+            {isSign ? "Sign Out" : <Link to="/login">Sign In</Link>}
           </Nav.Link>
-          <Nav.Link>Sign Up</Nav.Link>
+          <Nav.Link>
+            <Link to="/SignUp">Sign Up</Link>
+          </Nav.Link>
         </Nav>
       </Container>
     </Navbar>
