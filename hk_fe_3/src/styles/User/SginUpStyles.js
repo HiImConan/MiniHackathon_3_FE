@@ -4,14 +4,14 @@ export const LoginSection = styled.div`
    {
     display: flex;
     align-items: center;
-    height: 600px;
+    height: 550px;
   }
 `;
 
 export const LoginWrap = styled.div`
    {
     width: 350px;
-    height: 500px;
+    height: 550px;
     background-color: white;
     margin: 0 auto;
     border: 1px solid lightgray;
@@ -80,3 +80,7 @@ export const PasswordInput = styled.input`
 `;
 
 export const SignInButton = styled.button;
+
+export const InputFile = styled.input`
+  margin-top: 30px;
+`;
