@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef } from "react";
-import { getCommentApi } from "../assets/Api_test";
+import React, { useState, useEffect, useRef } from "react";
+import { getCommentApi, postCommentApi } from "../assets/Api_test";
 
 import {
   CommentWrapper,
   CommentInputSection,
   CommentInput,
-  InputButton,
+  SubmitButton,
   CommentSection,
   CommentDiv,
   TextArea,
@@ -14,9 +14,31 @@ import {
   CommentContent,
 } from "../styles/Detail/CommentStyles";
 
+const UpdateComment = React.memo((commentData) => {
+  console.log(commentData);
+  return (
+    <>
+      {commentData &&
+        commentData.map(({ id, username, post }) => (
+          <CommentDiv key={id}>
+            <AvatarImg alt={"User"} />
+            <TextArea>
+              <CommentAuthor>{username}</CommentAuthor>
+              <CommentContent>{post}</CommentContent>
+            </TextArea>
+          </CommentDiv>
+        ))}
+    </>
+  );
+});
+
 const Comment = ({ movieID }) => {
   const [commentData, setCommentData] = useState([]);
-  const [repl, setRepl] = useState("");
+  const [comment, setComment] = useState({
+    id: "3",
+    username: "익명",
+    post: "",
+  });
 
   const replInput = useRef();
 
@@ -26,14 +48,40 @@ const Comment = ({ movieID }) => {
         const response = await getCommentApi(movieID);
         console.log(response);
         setCommentData(response);
+        console.log(commentData);
       } catch (e) {
         console.log(e);
       }
     };
     getData();
-  }, [movieID]);
+  }, []);
 
-  const onChange = () => {};
+  const onChange = (e) => {
+    setComment({
+      ...comment,
+      body: e.target.value,
+    });
+    console.log(comment);
+  };
+
+  const postComment = (e) => {
+    e.preventDefault();
+    const post = async () => {
+      try {
+        const response = await postCommentApi(movieID, comment);
+        console.log(response);
+        setCommentData(response);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    post();
+    setComment("");
+  };
+
+  useEffect(() => {
+    UpdateComment();
+  }, [commentData]);
 
   return (
     <CommentWrapper>
@@ -46,19 +94,17 @@ const Comment = ({ movieID }) => {
           onChange={onChange}
           ref={replInput}
         />
-        <InputButton>작성</InputButton>
+        <SubmitButton
+          className={
+            comment.length > 0 ? "submitBtnActive" : "submitBtnInactive"
+          }
+          onClick={postComment}
+        >
+          게시
+        </SubmitButton>
       </CommentInputSection>
       <CommentSection>
-        {commentData &&
-          commentData.map(({ author, body, ...rest }) => (
-            <CommentDiv key={author}>
-              <AvatarImg alt={"User"} />
-              <TextArea>
-                <CommentAuthor>{author}</CommentAuthor>
-                <CommentContent>{body}</CommentContent>
-              </TextArea>
-            </CommentDiv>
-          ))}
+        {commentData && <UpdateComment commentData={commentData} />}
       </CommentSection>
     </CommentWrapper>
   );
