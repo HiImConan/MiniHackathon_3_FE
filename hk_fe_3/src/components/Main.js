@@ -7,6 +7,9 @@ import { SearchInput, SeachDiv, MainWrap } from "../styles/Main/MainStyles";
 import MovieList from "./MovieList";
 import PageList from "./PageList";
 
+import Spinner from "react-bootstrap/Spinner";
+import { LoadingDiv } from "./../styles/Main/MainStyles";
+
 const Main = () => {
   const [moviesData, setMoviesData] = useState([]);
   //const [page, setPage] = useState(1);
@@ -66,7 +69,9 @@ const Main = () => {
         />
       </SeachDiv>
       {loading ? (
-        <div>로딩중입니다..</div>
+        <LoadingDiv>
+          <Spinner animation="border" />
+        </LoadingDiv>
       ) : moviesData.length === 0 ? (
         <div>검색 결과가 없습니다.</div>
       ) : (

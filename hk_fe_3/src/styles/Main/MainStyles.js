@@ -84,3 +84,11 @@ export const PageNumberDiv = styled.div`
     padding: 5px;
   }
 `;
+
+export const LoadingDiv = styled.div`
+   {
+    width: 100px;
+    height: 200px;
+    margin: 0 auto;
+  }
+`;
