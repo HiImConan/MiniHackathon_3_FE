@@ -24,6 +24,7 @@ import {
 const Detail = () => {
   const [movieData, setMovieData] = useState([]);
   const { movieID } = useParams();
+  console.log(movieID);
 
   // useEffect(() => {
   //   setMovieData(selected);

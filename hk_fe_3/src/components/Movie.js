@@ -10,7 +10,7 @@ import {
 
 const Movie = ({ poster, title, movieIdData }) => {
   const navigate = useNavigate();
-
+  console.log(movieIdData);
   const showMovieDetial = () => {
     navigate(`/detail/${movieIdData}`);
   };

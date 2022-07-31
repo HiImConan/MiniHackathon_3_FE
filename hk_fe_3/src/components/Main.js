@@ -17,8 +17,9 @@ const Main = () => {
       try {
         const response = await getMovieApi();
 
+        console.log(response);
         //pages 관리
-        const lastPage = Math.ceil(response.movies.length / 30);
+        const lastPage = Math.ceil(response.length / 30);
         console.log(lastPage);
         const tempPages = [];
         for (let i = 1; i <= lastPage; i++) {
@@ -27,7 +28,7 @@ const Main = () => {
         setPages(tempPages);
 
         // movieData 관리
-        setMoviesData(response.movies); // [{},{},...] 원래는 response.data였음
+        setMoviesData(response); // [{},{},...] 원래는 response.data였음
         console.log(moviesData);
       } catch (e) {
         console.log(e);
