@@ -26,10 +26,10 @@ const Header = () => {
           <Link to="/"> 루튼 토마토</Link>
         </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link onClick={ToggleSign}>
+          <Nav.Link onClick={ToggleSign} style={{ fontSize: "10pt" }}>
             {isSign ? "Sign Out" : <Link to="/login">Sign In</Link>}
           </Nav.Link>
-          <Nav.Link>
+          <Nav.Link style={{ fontSize: "10pt" }}>
             <Link to="/SignUp">Sign Up</Link>
           </Nav.Link>
         </Nav>

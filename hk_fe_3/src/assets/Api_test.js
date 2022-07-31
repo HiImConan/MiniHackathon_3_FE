@@ -2,9 +2,7 @@ import axios from "axios";
 
 export async function getMovieApi() {
   try {
-    const res = await axios.get(
-      `https://d0cc7814-98ab-422a-b0ef-82d4165b2542.mock.pstmn.io/movie/movielist`
-    );
+    const res = await axios.get(`http://127.0.0.1/8000/movies/`);
     console.log("success getting Movie api");
     return res.data;
   } catch (e) {
