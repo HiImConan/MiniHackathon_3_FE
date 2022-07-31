@@ -13,7 +13,11 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  const [isSign, setIsSign] = useState(false);
+  const [isSign, setIsSign] = useState(true);
+
+  const ToggleSign = () => {
+    setIsSign(!isSign);
+  };
 
   return (
     <Navbar variant="light">
@@ -22,7 +26,9 @@ const Header = () => {
           <Link to="/"> 루튼 토마토</Link>
         </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link>{isSign ? "Sign Out" : "Sign In"}</Nav.Link>
+          <Nav.Link onClick={ToggleSign}>
+            {isSign ? "Sign Out" : <Link to="login">Sign In</Link>}
+          </Nav.Link>
           <Nav.Link>Sign Up</Nav.Link>
         </Nav>
       </Container>

@@ -1,31 +1,50 @@
 import styled from "styled-components";
 
-export const LoginWrap = styled.div`
+export const LoginSection = styled.div`
    {
-    width: 500px;
+    display: flex;
+    align-items: center;
     height: 500px;
-    background-color: lightgray;
-    margin: 0 auto;
+    //background-color: red;
   }
 `;
 
-export const LoginInputDiv = styled.div`
+export const LoginWrap = styled.div`
    {
-    width: 400px;
-    background-color: green;
+    width: 350px;
+    height: 300px;
+    background-color: white;
     margin: 0 auto;
-    text-align: center;
+    border: 1px solid gray;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+  }
+`;
+
+export const LoginDiv = styled.div`
+   {
+    margin: auto auto;
+    //background-color: red;
   }
 `;
 
 export const LoginTitle = styled.div`
    {
-    font-size: 30px;
-    width: 400px;
-    padding: 30px 0;
+    font-size: 20px;
+    font-weight: 700;
+    width: 350px;
+    padding-bottom: 35px;
     margin: 0 auto;
-    background-color: red;
+    //background-color: red;
     text-align: center;
+  }
+`;
+export const LoginInputDiv = styled.div`
+   {
+    width: 250px;
+    margin: 0 auto;
+    padding-bottom: 10px;
   }
 `;
 
@@ -34,8 +53,18 @@ export const IdInput = styled.input`
     width: 250px;
     height: 30px;
     border: none;
-    border-bottom: 1px solid black;
-    margin: 0 auto;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    font-size: 10pt;
+    padding: 10px;
+  }
+`;
+
+export const InputTitle = styled.div`
+   {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -44,7 +73,12 @@ export const PasswordInput = styled.input`
     width: 250px;
     height: 30px;
     border: none;
-    border-bottom: 1px solid black;
+    border: 1px solid lightgray;
+    border-radius: 3px;
     margin: 0 auto;
+    font-size: 10pt;
+    padding: 10px;
   }
 `;
+
+export const SignInButton = styled.button;
