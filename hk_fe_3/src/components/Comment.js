@@ -14,26 +14,8 @@ import {
   CommentContent,
 } from "../styles/Detail/CommentStyles";
 
-const UpdateComment = React.memo((commentData) => {
-  console.log(commentData);
-  return (
-    <>
-      {commentData &&
-        commentData.map(({ id, username, post }) => (
-          <CommentDiv key={id}>
-            <AvatarImg alt={"User"} />
-            <TextArea>
-              <CommentAuthor>{username}</CommentAuthor>
-              <CommentContent>{post}</CommentContent>
-            </TextArea>
-          </CommentDiv>
-        ))}
-    </>
-  );
-});
-
 const Comment = ({ movieID }) => {
-  const [commentData, setCommentData] = useState([]);
+  const [commentData, setCommentData] = useState("");
   const [comment, setComment] = useState({
     id: "3",
     username: "익명",
@@ -48,7 +30,6 @@ const Comment = ({ movieID }) => {
         const response = await getCommentApi(movieID);
         console.log(response);
         setCommentData(response);
-        console.log(commentData);
       } catch (e) {
         console.log(e);
       }
@@ -79,8 +60,28 @@ const Comment = ({ movieID }) => {
     setComment("");
   };
 
+  const UpdateComment = React.memo((commentData) => {
+    console.log(commentData);
+    return (
+      <>
+        {commentData.length > 0
+          ? commentData.map(({ id, username, post }) => (
+              <CommentDiv key={id}>
+                <AvatarImg alt={"User"} />
+                <TextArea>
+                  <CommentAuthor>{username}</CommentAuthor>
+                  <CommentContent>{post}</CommentContent>
+                </TextArea>
+              </CommentDiv>
+            ))
+          : console.log("error: commentData is empty")}
+      </>
+    );
+  });
+
   useEffect(() => {
-    UpdateComment();
+    console.log(commentData);
+    UpdateComment(commentData);
   }, [commentData]);
 
   return (
@@ -110,4 +111,4 @@ const Comment = ({ movieID }) => {
   );
 };
 
-export default Comment;
+export default React.memo(Comment);

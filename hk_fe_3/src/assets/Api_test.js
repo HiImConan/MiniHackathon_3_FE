@@ -1,11 +1,10 @@
 import axios from "axios";
 
-const API_URL =
-  "https://4026148c-8461-4a65-bbb5-bafce3e2e199.mock.pstmn.io/movie";
+const API_URL = "http://0.0.0.0:8000/movies/";
 
 export async function getMovieApi() {
   try {
-    const res = await axios.get(`http://0.0.0.0:8000/movies/`);
+    const res = await axios.get(`${API_URL}`);
     console.log("success getting Movie api");
     return res.data;
   } catch (e) {
@@ -17,7 +16,7 @@ export async function getMovieApi() {
 
 export async function getDetailApi(movieID) {
   try {
-    const res = await axios.get(`${API_URL}/${movieID}`);
+    const res = await axios.get(`${API_URL}${movieID}`);
     console.log("success getting Detail api");
     return res.data;
   } catch (e) {
@@ -29,7 +28,7 @@ export async function getDetailApi(movieID) {
 
 export async function postCommentApi(movieID, comment) {
   try {
-    await axios.post(`${API_URL}/comments/${movieID}`, comment);
+    await axios.post(`${API_URL}comments/${movieID}`, comment);
     const res = await getCommentApi(movieID);
     console.log("success posting Comment");
     console.log(res);
@@ -44,7 +43,7 @@ export async function postCommentApi(movieID, comment) {
 
 export async function getCommentApi(movieID) {
   try {
-    const res = await axios.get(`${API_URL}/comments/${movieID}`);
+    const res = await axios.get(`${API_URL}comments/${movieID}`);
     console.log("success getting Comment api");
     return res.data;
   } catch (e) {
