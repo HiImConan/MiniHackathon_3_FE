@@ -23,7 +23,7 @@ const SignUp = () => {
           </LoginInputDiv>
           <LoginInputDiv>
             <InputTitle>age</InputTitle>
-            <IdInput placeholder="Enter Your age..." />
+            <IdInput placeholder="Enter Your Age..." />
           </LoginInputDiv>
           <LoginInputDiv>
             <InputTitle>NickName</InputTitle>
