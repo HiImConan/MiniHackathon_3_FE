@@ -11,10 +11,13 @@ const Main = () => {
   const [moviesData, setMoviesData] = useState([]);
   //const [page, setPage] = useState(1);
   const [pages, setPages] = useState([]); // 페이지 배열
+  const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
       try {
+        setLoading(true);
         const response = await getMovieApi();
 
         //pages 관리
@@ -29,6 +32,7 @@ const Main = () => {
         // movieData 관리
         setMoviesData(response.movies); // [{},{},...] 원래는 response.data였음
         console.log(moviesData);
+        setLoading(false);
       } catch (e) {
         console.log(e);
       }
@@ -36,13 +40,41 @@ const Main = () => {
     getData();
   }, []);
 
+  const onChange = (e) => {
+    setQuery(e.target.value);
+    console.log(query);
+  };
+
+  const onKeyUp = (e) => {
+    if (e.key === "Enter") {
+      const SearchMovie = moviesData.filter(
+        (movie) => movie.title_kor === query
+      );
+      setMoviesData(SearchMovie);
+      setQuery("");
+      e.target.vlaue = "";
+    }
+  };
+
   return (
     <MainWrap>
       <SeachDiv>
-        <SearchInput placeholder="Ex)인셉션" />
+        <SearchInput
+          onChange={onChange}
+          onKeyUp={onKeyUp}
+          placeholder="Ex)인셉션"
+        />
       </SeachDiv>
-      <MovieList moviesData={moviesData} />
-      <PageList pages={pages} />
+      {loading ? (
+        <div>로딩중입니다..</div>
+      ) : moviesData.length === 0 ? (
+        <div>검색 결과가 없습니다.</div>
+      ) : (
+        <>
+          <MovieList moviesData={moviesData} />
+          <PageList pages={pages} />
+        </>
+      )}
     </MainWrap>
   );
 };
