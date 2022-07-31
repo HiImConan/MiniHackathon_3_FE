@@ -23,12 +23,12 @@ import {
 
 const Detail = () => {
   const [movieData, setMovieData] = useState([]);
-  const { movieID } = useParams();
-  console.log(movieID);
+  const movieTitle = useParams().movieTitle;
+  console.log(movieTitle);
 
-  // useEffect(() => {
-  //   setMovieData(selected);
-  // }, [selected]);
+  useEffect(() => {
+    setMovieData(selected);
+  }, [selected]);
 
   useEffect(() => {
     const getData = async () => {
@@ -118,7 +118,7 @@ const Detail = () => {
           </StaffInfoContainer>
         </StaffInfoWrapper>
       </MovieInfoWrapper>
-      <Comment movieID={movieID} />
+      <Comment movieTitle={movieTitle} />
     </DetailWrapper>
   );
 };

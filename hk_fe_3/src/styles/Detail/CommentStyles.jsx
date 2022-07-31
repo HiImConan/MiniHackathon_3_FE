@@ -20,6 +20,7 @@ export const CommentInput = styled.input`
 `;
 export const SubmitButton = styled.button`
   display: flex;
+  justify-content: center;
   align-items: center;
   outline: none;
   border: none;
@@ -31,6 +32,7 @@ export const SubmitButton = styled.button`
   padding-right: 1rem;
 
   height: 3rem;
+  width: 5rem;
   font-size: 1rem;
 
   background: #228be6;

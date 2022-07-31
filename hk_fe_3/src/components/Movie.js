@@ -8,11 +8,10 @@ import {
   MovieTitleDiv,
 } from "../styles/Main/MainStyles";
 
-const Movie = ({ poster, title, movieIdData }) => {
+const Movie = ({ poster, title }) => {
   const navigate = useNavigate();
-  console.log(movieIdData);
   const showMovieDetial = () => {
-    navigate(`/detail/${movieIdData}`);
+    navigate(`/detail/${title}`);
   };
 
   return (

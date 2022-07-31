@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getCommentApi, postCommentApi } from "../assets/Api_test";
+import axios from "axios";
 
 import {
   CommentWrapper,
@@ -14,75 +15,61 @@ import {
   CommentContent,
 } from "../styles/Detail/CommentStyles";
 
-const Comment = ({ movieID }) => {
+const Comment = ({ movieTitle }) => {
   const [commentData, setCommentData] = useState("");
-  const [comment, setComment] = useState({
-    id: "3",
-    username: "익명",
-    post: "",
-  });
+  const [comment, setComment] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const [sample, setSample] = useState([
+    { id: 1, username: "kimmuksa", post: "wow so fun!!" },
+    { id: 2, username: "민규", post: "되니!!" },
+  ]);
 
   const replInput = useRef();
 
+  const onChange = (e) => {
+    setComment(e.target.value);
+  };
+
   useEffect(() => {
     const getData = async () => {
+      setLoading(true);
       try {
-        const response = await getCommentApi(movieID);
-        console.log(response);
-        setCommentData(response);
+        const res = await axios.get(`http://127.0.0.1:8000/comment/get_reply`, {
+          title_kor: movieTitle,
+        });
+        setCommentData(res.data);
+        console.log(res.data);
       } catch (e) {
         console.log(e);
       }
+      setLoading(false);
     };
     getData();
   }, []);
 
-  const onChange = (e) => {
-    setComment({
-      ...comment,
-      body: e.target.value,
+  const postComment = () => {
+    // axios
+    // 	.post(
+    // 		`https://4026148c-8461-4a65-bbb5-bafce3e2e199.mock.pstmn.io/movie/comments/${movieID}`,
+    // 		{
+    // 			id: 2,
+    // 			name: "민규",
+    // 			post: comment,
+    // 		}
+    // 	)
+    // 	.then(() => {
+    // 		console.log("성공");
+    // 		console.log(commentData);
+    // 	});
+    const newComment = sample.concat({
+      id: sample.length + 1,
+      username: "민규",
+      post: comment,
     });
-    console.log(comment);
+    setSample(newComment);
+    alert("success");
   };
-
-  const postComment = (e) => {
-    e.preventDefault();
-    const post = async () => {
-      try {
-        const response = await postCommentApi(movieID, comment);
-        console.log(response);
-        setCommentData(response);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    post();
-    setComment("");
-  };
-
-  const UpdateComment = React.memo((commentData) => {
-    console.log(commentData);
-    return (
-      <>
-        {commentData.length > 0
-          ? commentData.map(({ id, username, post }) => (
-              <CommentDiv key={id}>
-                <AvatarImg alt={"User"} />
-                <TextArea>
-                  <CommentAuthor>{username}</CommentAuthor>
-                  <CommentContent>{post}</CommentContent>
-                </TextArea>
-              </CommentDiv>
-            ))
-          : console.log("error: commentData is empty")}
-      </>
-    );
-  });
-
-  useEffect(() => {
-    console.log(commentData);
-    UpdateComment(commentData);
-  }, [commentData]);
 
   return (
     <CommentWrapper>
@@ -95,20 +82,17 @@ const Comment = ({ movieID }) => {
           onChange={onChange}
           ref={replInput}
         />
-        <SubmitButton
-          className={
-            comment.length > 0 ? "submitBtnActive" : "submitBtnInactive"
-          }
-          onClick={postComment}
-        >
-          게시
-        </SubmitButton>
+        <SubmitButton onClick={postComment}>작성</SubmitButton>
       </CommentInputSection>
       <CommentSection>
-        {commentData && <UpdateComment commentData={commentData} />}
+        {sample.map((s) => (
+          <div>
+            {s.username} : {s.post}
+          </div>
+        ))}
       </CommentSection>
     </CommentWrapper>
   );
 };
 
-export default React.memo(Comment);
+export default Comment;
