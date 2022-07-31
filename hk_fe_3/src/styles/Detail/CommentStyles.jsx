@@ -18,7 +18,7 @@ export const CommentInput = styled.input`
   width: 100%;
   margin-right: 0.5rem;
 `;
-export const InputButton = styled.button`
+export const SubmitButton = styled.button`
   display: flex;
   align-items: center;
   outline: none;
