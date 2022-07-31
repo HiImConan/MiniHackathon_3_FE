@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useState } from "react-router-dom";
 
 import {
   MovieDiv,
@@ -7,9 +8,15 @@ import {
   MovieTitleDiv,
 } from "../styles/Main/MainStyles";
 
-const Movie = ({ poster, title }) => {
+const Movie = ({ poster, title, movieIdData }) => {
+  const navigate = useNavigate();
+
+  const showMovieDetial = () => {
+    navigate(`/detail/${movieIdData}`);
+  };
+
   return (
-    <MovieDiv>
+    <MovieDiv onClick={showMovieDetial}>
       <MovieImg
         style={{ backgroundImage: `url(${poster})` }}
         src={poster}

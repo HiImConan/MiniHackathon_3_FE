@@ -4,14 +4,14 @@ export const LoginSection = styled.div`
    {
     display: flex;
     align-items: center;
-    height: 500px;
+    height: 600px;
   }
 `;
 
 export const LoginWrap = styled.div`
    {
     width: 350px;
-    height: 300px;
+    height: 500px;
     background-color: white;
     margin: 0 auto;
     border: 1px solid lightgray;
