@@ -7,7 +7,7 @@ const MovieList = ({ moviesData }) => {
   return (
     <MovieListDiv>
       {moviesData.map((movie, idx) => (
-        <Movie key={idx} movie={movie} />
+        <Movie key={idx} movie={movie} movieID={idx} />
       ))}
     </MovieListDiv>
   );
