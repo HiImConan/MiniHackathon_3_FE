@@ -45,7 +45,7 @@ const SignUp = () => {
 
   const onClickSubmit = () => {
     axios
-      .post("https://127.0.0.1:8000/accounts/signup", {
+      .post("http://127.0.0.1:8000/accounts/signup", {
         username: name,
         password: password,
         nickname: nickname,
